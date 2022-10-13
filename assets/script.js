@@ -73,6 +73,33 @@ var lowerChars = [
 var upperChars = lowerChars.map(function (x) {
   return x.toUpperCase;
 });
+
+// Generate the password
+function generatePassword() {
+  //Prompt window for user to select the lenght of the password
+  var lenght = window.prompt(
+    "How long would you like your password to be?Choose between 8 and 128"
+  );
+  //If user didnt chose a value alert them to insert a value
+  if (isNaN(lenght)) {
+    alert("You need to insert a value");
+    //if the value inserted was less than 8 or more than 128
+    //prompt user to choose between that value
+  } else if (lenght < 8 || lenght > 128) {
+    window.prompt("Your password must be betwwen 8 and 128 characters");
+  }
+
+  //Object with all the user options
+  //Set all options to false and password lenght to 0
+  var ooptions = {
+    numberofChars : 0,
+    hasLowerChars : false,
+    hasUpperChars : false,
+    hasSpecialChars : false,
+    hasNumbers : false,
+  };
+}
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
