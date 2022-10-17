@@ -70,6 +70,7 @@ var lowerChars = [
 //The map will pick every element of the array one
 //by one and will pass it as x to the function and
 //turn it into uppercase
+
 var upperChars = lowerChars.map(function (x) {
   return x.toUpperCase();
 });
@@ -77,11 +78,11 @@ var upperChars = lowerChars.map(function (x) {
 //Prompt user to make a choice and the boolean(True or false) return will be inserted into a variable
 function promptChoice(choice) {
   var response = prompt("Do you want to include " + choice + "? {Y/N}");
-  while (response !== "Y" && response !== "N") {
+  while (response !== "Y".toLowerCase() && response !== "N".toLowerCase()) {
     response = prompt("Response must be Y or N. Please try again");
   }
 
-  if (response === "Y" || response === "y") {
+  if (response === "Y".toLowerCase()) {
     return true;
   } else {
     return false;
@@ -121,23 +122,38 @@ function generatePassword() {
   //
   //insert user options into array
   var char = [];
-  //if option is true insert array into empty array
-  if (hasLowerChars) {
-    char.push(...lowerChars);
-  }
-  if (hasUpperChars) {
-    char.push(...upperChars);
-  }
-  if (hasSpecialChars) {
-    char.push(...specialChars);
-  }
-  if (hasNumbers) {
-    char.push(...numbers);
-  }
   //password string
   var password = "";
+  //if option is true insert array into empty array
+  if (hasLowerChars) {
+    //add lowercase characters to the char array
+    char.push(...lowerChars);
+    //add a lowercase character to the password array to ensure the password meets the requirements
+    password += lowerChars[Math.floor(Math.random() * lowerChars.length)];
+  }
+  if (hasUpperChars) {
+    //add uppercase characters to the char array
+    char.push(...upperChars);
+    //add a uppercase character to the password array to ensure the password meets the requirements
+    password += upperChars[Math.floor(Math.random() * upperChars.length)];
+  }
+  if (hasSpecialChars) {
+    //add special characters to the char array
+    char.push(...specialChars);
+    //add a lowercase character to the password array to ensure the password meets the requirements
+    password += specialChars[Math.floor(Math.random() * specialChars.length)];
+  }
+  if (hasNumbers) {
+    //add numbers to the char array
+    char.push(...numbers);
+    //add a lowercase character to the password array to ensure the password meets the requirements
+    password += numbers[Math.floor(Math.random() * numbers.length)];
+  }
+  console.log(password.length);
+  console.log(lenght - password.length);
+
   //select random character out of user's choices array
-  for (i = 0; i < lenght; i++) {
+  for (i = password.length; i < lenght; i++) {
     password += char[Math.floor(Math.random() * char.length)];
   }
 
