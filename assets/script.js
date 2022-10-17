@@ -1,5 +1,5 @@
 // Assignment Code
-
+// Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 //Input Variables
 //Numbers Array
@@ -71,8 +71,22 @@ var lowerChars = [
 //by one and will pass it as x to the function and
 //turn it into uppercase
 var upperChars = lowerChars.map(function (x) {
-  return x.toUpperCase;
+  return x.toUpperCase();
 });
+
+//Prompt user to make a choice and the boolean(True or false) return will be inserted into a variable
+function promptChoice(choice) {
+  var response = prompt("Do you want to include " + choice + "? {Y/N}");
+  while (response !== "Y" && response !== "N") {
+    response = prompt("Response must be Y or N. Please try again");
+  }
+
+  if (response === "Y" || response === "y") {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 // Generate the password
 function generatePassword() {
@@ -89,15 +103,43 @@ function generatePassword() {
     window.prompt("Your password must be betwwen 8 and 128 characters");
   }
 
-  //Object with all the user options
-  //Set all options to false and password lenght to 0
-  var ooptions = {
-    numberofChars : 0,
-    hasLowerChars : false,
-    hasUpperChars : false,
-    hasSpecialChars : false,
-    hasNumbers : false,
-  };
+  //Prompt user to choose password characteristics
+  var hasLowerChars = promptChoice("lowercase characters");
+  var hasUpperChars = promptChoice("uppercase characters");
+  var hasSpecialChars = promptChoice("special characters");
+  var hasNumbers = promptChoice("numbers");
+
+  //Checks if the user has selected any type of character
+  while (!hasLowerChars && !hasUpperChars && !hasSpecialChars && !hasNumbers) {
+    alert("You must select at least on character type. Please try again!");
+    //if user hasnt selected an option prompt user to make a choice
+    hasLowerChars = promptChoice("lowercase charachters");
+    hasUpperChars = promptChoice("uppercase characters");
+    hasSpecialChars = promptChoice("special characters");
+    hasNumbers = promptChoice("numbers");
+  }
+  //
+  //insert user options into array
+  var char = [];
+  //if option is true insert array into empty array
+  if (hasLowerChars) {
+    char.push(...lowerChars);
+  }
+  if (hasUpperChars) {
+    char.push(...upperChars);
+  }
+  if (hasSpecialChars) {
+    char.push(...specialChars);
+  }
+  if (hasNumbers) {
+    char.push(...numbers);
+  }
+  //password string
+  var password = "";
+  //select random character out of user's choices array
+  for (i = 0; i < lenght; i++) {
+    password += char[Math.floor(Math.random() * char.length)];
+  }
 }
 
 // Write password to the #password input
