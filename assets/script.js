@@ -140,6 +140,8 @@ function generatePassword() {
   for (i = 0; i < lenght; i++) {
     password += char[Math.floor(Math.random() * char.length)];
   }
+
+  return password;
 }
 
 // Write password to the #password input
