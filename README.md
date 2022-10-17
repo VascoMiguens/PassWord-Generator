@@ -9,4 +9,4 @@ This projects is the third challeng of a bootcamp where students have to develop
 
 ## Preview 
 
-![](https://github.com/VascoMiguens/Portfolio/blob/main/assets/screenshot.png)
+![](https://github.com/VascoMiguens/Password-Generator/blob/main/assets/screenshot.png)
