@@ -82,7 +82,7 @@ function promptChoice(choice) {
     response = prompt("Response must be Y or N. Please try again");
   }
 
-  if (response === "Y".toLowerCase) {
+  if (response === "Y".toLowerCase()) {
     return true;
   } else {
     return false;
@@ -155,7 +155,6 @@ function generatePassword() {
   }
 
   //select random character out of user's choices array
-  console.log(lenght - password.length);
   //deduct the characters already inserted into passowrd
   var size = lenght - password.length;
   for (i = 0; i < size; i++) {
