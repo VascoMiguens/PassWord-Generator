@@ -82,7 +82,7 @@ function promptChoice(choice) {
     response = prompt("Response must be Y or N. Please try again");
   }
 
-  if (response === "Y".toLowerCase()) {
+  if (response === "Y".toLowerCase) {
     return true;
   } else {
     return false;
@@ -102,6 +102,10 @@ function generatePassword() {
     //prompt user to choose between that value
   } else if (lenght < 8 || lenght > 128) {
     window.prompt("Your password must be betwwen 8 and 128 characters");
+  }
+
+  if (lenght === null) {
+    return;
   }
 
   //Prompt user to choose password characteristics
@@ -149,11 +153,12 @@ function generatePassword() {
     //add a lowercase character to the password array to ensure the password meets the requirements
     password += numbers[Math.floor(Math.random() * numbers.length)];
   }
-  console.log(password.length);
-  console.log(lenght - password.length);
 
   //select random character out of user's choices array
-  for (i = password.length; i < lenght; i++) {
+  console.log(lenght - password.length);
+  //deduct the characters already inserted into passowrd
+  var size = lenght - password.length;
+  for (i = 0; i < size; i++) {
     password += char[Math.floor(Math.random() * char.length)];
   }
 
